@@ -32,6 +32,8 @@ This patch is intentionally conservative. It introduces the architecture require
 
 The next PR should migrate one provider end-to-end and retain a legacy fallback for one release.
 
-## Runtime bridge (pending)
+## Runtime bridge
 
-The delivery ZIP does not contain the separately delivered LinkSwift-userscript-download-task-bridge.patch. This foundation change does not modify the distributable userscript. Add and validate that patch before marking the full Stage 1 PR ready for review.
+The distributable userscript now exposes download.task(index). Normal/enhanced downloads, downloader dispatch, and copy/command generation consume its normalized fields. This is a plain-object compatibility bridge, not a bundled instance of the core DownloadTask class.
+
+The supplied patch was applied with one defensive adjustment: optional access to files prevents a malformed legacy configuration from throwing. Tests execute the actual state/task methods extracted from the userscript and cover metadata preservation and invalid state. Live cloud-provider and downloader integration checks remain manual.

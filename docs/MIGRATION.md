@@ -12,7 +12,7 @@
 
 ## Phase 1.1 — userscript runtime bridge
 
-Pending: the delivery ZIP does not include the separate runtime bridge patch. Once supplied, apply the `LinkSwift-userscript-download-task-bridge.patch` after the foundation patch. It centralizes the repeated legacy `state → file → link/name/size/headers` extraction behind `download.task(index)`. The bridge deliberately returns a plain object compatible with the `DownloadTask` field names because the monolithic userscript does not yet have a module build step.
+The runtime bridge is included in the distributable userscript. The original `LinkSwift-userscript-download-task-bridge.patch` was applied after the foundation. It centralizes the repeated legacy `state → file → link/name/size/headers` extraction behind `download.task(index)`. The bridge deliberately returns a plain object compatible with the `DownloadTask` field names because the monolithic userscript does not yet have a module build step.
 
 This bridge is a migration seam, not a second permanent task model. Phase 5 replaces it with the bundled `DownloadTask` implementation.
 
